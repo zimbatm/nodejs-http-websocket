@@ -1,0 +1,76 @@
+<!--
+  Copyright: Hiroshi Ichikawa <http://gimite.net/en/>
+  Lincense: New BSD Lincense
+-->
+
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Sample of web_socket.js</title>
+  
+  <!-- Include these three JS files: -->
+  <script type="text/javascript" src="swfobject.js"></script>
+  <script type="text/javascript" src="FABridge.js"></script>
+  <script type="text/javascript" src="web_socket.js"></script>
+
+  <script type="text/javascript">
+    
+    // Set URL of your WebSocketMain.swf here:
+    WebSocket.__swfLocation = "WebSocketMain.swf";
+
+    var ws;
+    
+    function init() {
+
+      // Connect to Web Socket.
+      // Change host/port here to your own Web Socket server.
+      ws = new WebSocket("ws://localhost:8000/echo");
+
+      // Set event handlers.
+      ws.onopen = function() {
+        output("onopen");
+      };
+      ws.onmessage = function(e) {
+        // e.data contains received string.
+        output("onmessage: " + e.data);
+      };
+      ws.onclose = function() {
+        output("onclose");
+      };
+
+    }
+    
+    function onSubmit(ev) {
+      // Stop submitting the form
+      var ev = ev || window.event;
+      if (ev.preventDefault) ev.preventDefault();
+      else ev.returnValue = false;
+
+      var input = document.getElementById("input");
+      // You can send message to the Web Socket using ws.send.
+      ws.send(input.value);
+      output("send: " + input.value);
+
+      input.value = "";
+      input.focus();
+
+      return false;
+    }
+    
+    function onClose() {
+      ws.close();
+    }
+    
+    function output(str) {
+      var log = document.getElementById("log");
+      log.innerHTML += "\n" + str;
+    }
+
+  </script>
+</head><body onload="init();">
+  <form onsubmit="javascript:return onSubmit(arguments[0])">
+    <input type="text" id="input">
+    <input type="submit" value="Send">
+    <input type="button" value="close" onclick="javascript:onClose()">
+  </form>
+  <pre id="log"></pre>
+</body></html>
