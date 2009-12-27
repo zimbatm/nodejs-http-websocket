@@ -1,8 +1,11 @@
-From 37a975b92da63d9141690d379adfeb827dbd097c Mon Sep 17 00:00:00 2001
+From aa7bbd6f4881ccd00748c177eb3af98c3034cb01 Mon Sep 17 00:00:00 2001
 From: Pfenniger Jonas <zimbatm@Guybrush.local>
 Date: Fri, 25 Dec 2009 23:51:00 +0100
-Subject: [PATCH] Added hijack method to http.Request.prototype.connection
+Subject: [PATCH 2/2] [http] HTTPConnection now has a hijack() method.
 
+This is used by the WebSocket server implementation to change the rules
+of HTTP connection. Virtually taking over the connection by hijack()ing
+it. Yarrrrrrr !
 ---
  src/node_http.cc |   14 ++++++++++++++
  src/node_http.h  |    8 ++++++++
