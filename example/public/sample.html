@@ -26,14 +26,17 @@
       ws = new WebSocket("ws://localhost:8000/echo");
 
       // Set event handlers.
-      ws.onopen = function() {
+      ws.onopen = function(e) {
+	if (console) console.log("open", e);
         output("onopen");
       };
       ws.onmessage = function(e) {
+	if (console) console.log("message", e);
         // e.data contains received string.
         output("onmessage: " + e.data);
       };
-      ws.onclose = function() {
+      ws.onclose = function(e) {
+	if (console) console.log("open", e);
         output("onclose");
       };
 

@@ -19,7 +19,7 @@ function ping(msg, conn) {
 function handler(req, res) {
     sys.debug(req.method + ' ' + req.uri.path);
     if (ws.askUpgrade(req)) {
-        sys.debug("Upgrading to WebSocket");
+        sys.debug("Upgrading to WebSocket " + req.headers.cookie);
         var conn = new ws.Connection(req, res);
         conn.addListener("message", ping);
         conn.addListener("close", function() {
