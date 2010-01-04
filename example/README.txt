@@ -14,3 +14,9 @@ Run socketpolicy.pl as root. This is needed by the flash WebSocket implementatio
 Run `node ping.js` and open http://localhost:8000/sample.html with Firefox (other browsers not yet tested)
 
 Some times, the page takes long to load (unknown bug). Try reloading.
+
+== Licence (of example)
+
+Those files are under the New BDS licence. They are an adaptation of the work
+of http://github.com/Guille/web-socket-js
+
