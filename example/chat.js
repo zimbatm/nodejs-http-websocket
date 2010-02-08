@@ -26,12 +26,12 @@ chat.addListener("message", function(msg, conn) {
 });
 
 function handler(req, res) {
-    sys.debug(req.method + ' ' + req.uri.path);
+    sys.debug(req.method + ' ' + req.url);
     if (ws.askUpgrade(req)) {
         sys.debug("Upgrading to WebSocket");
         chat.connect(req, res);
     } else {
-        var filePath = publicDir + req.uri.path;
+        var filePath = publicDir + req.url;
         sendFile(req, res, filePath);
     }
 }

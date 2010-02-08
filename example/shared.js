@@ -11,7 +11,7 @@ const mimeMap = {
 
 
 function notFound(req, res) {
-    var msg = "<h1>File not found : " + req.uri.path + "</h1>";
+    var msg = "<h1>File not found : " + req.url + "</h1>";
     res.sendHeader(404, {
         "Content-Type": "text/html",
         "Content-Length": msg.length

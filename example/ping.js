@@ -26,7 +26,7 @@ function handler(req, res) {
            sys.debug("Closing WebSocket"); 
         });
     } else {
-        var filePath = publicDir + req.uri.path;
+        var filePath = publicDir + req.url;
         sendFile(req, res, filePath);
     }
 }
